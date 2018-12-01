@@ -3,10 +3,11 @@ package Project.TileRummy;
 import java.util.*;
 
 public abstract class Player {
-	public ArrayList<Tile> hand;
-	public String name;
-	public int index;
-	private HashMap<Integer, ArrayList<Tile>> table;
+	protected Table table;
+	protected String name;
+	protected int index;
+	protected ArrayList<Tile> hand;
+	
 	public Player(ArrayList<Tile> hand, String name, int index)
 	{
 		this.hand = hand;
@@ -14,9 +15,12 @@ public abstract class Player {
 		this.index = index;
 	}
 	
-	 abstract ArrayList<Tile> play();	
+	public abstract void play();
 	
+}
 	
+	/*
+	 * Iteration 1 code
 	Boolean winCheck(ArrayList<Integer> hand)
 	{
 		if(hand == null)
@@ -60,10 +64,7 @@ public abstract class Player {
 	}
 
 	
-	public ArrayList<Tile> play(Table table) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 }
+	*/
