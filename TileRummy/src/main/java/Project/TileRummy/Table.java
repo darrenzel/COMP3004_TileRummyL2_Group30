@@ -1,9 +1,12 @@
 package Project.TileRummy;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Observable;
 
 
-public class Table {
+public class Table extends Observable {
+	
 	private static final boolean True = false;
 	private ArrayList<Player> players = new ArrayList<Player>();
 	protected Deck deck;
@@ -48,17 +51,32 @@ public class Table {
 				
 			}
 		}
-}
+	    
 	
-	/*
-	 * Iteration 1 code
+	
+	public ArrayList<Meld> getMelds(){
+		return melds;
+	}
+	
+	public ArrayList<Meld> addMeld(Meld meld){
+		melds.add(meld);
+		return melds;
+	}
+	
+	
+	
+	
 	public String tableToString() {
-		String shortCut = "";
-		for(Meld meld:melds)
-		System.println(meld);
+		System.out.println("-------Table--------");
+		String s = "";
+		for(Meld m: melds) {
+			s += m.meldToString();
+		}
+		return s;
 	}
-		
-	return table.toString();
-	}
-	 */
 
+	
+	public void nextPlayer(Player nextPlayer) {
+	         nextPlayer.play();
+	}
+}
