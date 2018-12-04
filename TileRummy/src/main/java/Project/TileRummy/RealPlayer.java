@@ -6,15 +6,58 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
-public class RealPlayer extends Player implements Observer {
-	public HashMap<Integer, ArrayList<Tile>> table;
+public class RealPlayer extends Player {
 
 	public RealPlayer(ArrayList<Tile> hand, String name, int index)
 	{
 		super(hand, name, index);
 	}
 	@Override
-	public ArrayList<Tile> play(Table table){
+	public void play() {
+		int moveChoice;
+		Scanner sca = new Scanner(System.in);
+		table.printTable();
+		System.out.println("Do you want to move tile from your hand or table, or not moving?(input '1' for hand, '2' for table, '3' for do nothing.)");
+		moveChoice = sca.nextInt();
+		if(moveChoice == 1)
+		{
+			System.out.println("Write down the index of the tile you want to move.(Press Enter after)");
+			int startTileIndex = sca.nextInt()-1;
+			System.out.println("Write down the index of the meld you want to move to.(Press Enter after)");
+			int endMeldIndex = sca.nextInt()-1;	
+			System.out.println("Write down the index of the tile you want to move to.(Press Enter after)");
+			int endTileIndex = sca.nextInt()-1;	
+			
+			Tile tempTile = hand.get(startTileIndex);
+			hand.remove(startTileIndex);
+			table.melds.get(endMeldIndex).meld.add(endTileIndex, tempTile);
+
+		}
+		else if(moveChoice == 2)
+		{
+			System.out.println("Write down the index of the meld you want to move.(Press Enter after)");
+			int startMeldIndex = sca.nextInt()-1;
+			System.out.println("Write down the index of the tile you want to move.(Press Enter after)");
+			int startTileIndex = sca.nextInt()-1;
+			System.out.println("Write down the index of the meld you want to move to.(Press Enter after)");
+			int endMeldIndex = sca.nextInt()-1;	
+			System.out.println("Write down the index of the tile you want to move to.(Press Enter after)");
+			int endTileIndex = sca.nextInt()-1;	
+			
+			Meld tempMeld = table.melds.get(startMeldIndex);
+			Tile tempTile = tempMeld.meld.get(startTileIndex)
+			table.melds.get(startMeldIndex).meld.remove(startTileIndex);
+			table.melds.get(endMeldIndex).meld.add(endTileIndex, tempTile);
+		}
+		else if(moveChoice == 3)
+		{
+			table.deck.dealTile();
+		}
+	}
+	
+}
+	/*Iteration 1 code
+	public ArrayList<Tile> play(){
 		int moveChoice;
 		int countHandSize = hand.size();
 		
@@ -26,31 +69,7 @@ public class RealPlayer extends Player implements Observer {
 		System.out.println(table.table);
 		System.out.println("---------------------------------------------------------");
 		System.out.println("Your turn to move.");
-		System.out.println("Do you want to move tile on your hand or table?(input '1' for hand, '2' for table, '3' for do nothing.)");
-		moveChoice = sca.nextInt();
-		if(moveChoice == 1)
-		{
-			System.out.println("Write down the index of the tile you want to move.(Press Enter after each)");
-			int startIndex = sca.nextInt()-1;
-			System.out.println("Write down the row and the index of the tile you want to put.(Press Enter after each)");
-			int endRow = sca.nextInt()-1;
-			int endIndex = sca.nextInt()-1;
-			changeHandTile(table,startIndex,endRow,endIndex);
-		}
-		else if(moveChoice == 2)
-		{
-			System.out.println("Write down the row and the index of the tile you want to move.(Press Enter after each)");
-			int startRow = sca.nextInt()-1;
-			int startIndex = sca.nextInt()-1;
-			System.out.println("Write down the row and the index of the tile you want to put.(Press Enter after each)");
-			int endRow = sca.nextInt()-1;
-			int endIndex = sca.nextInt()-1;
-			changeTableTile(table,startRow, startIndex, endRow, endIndex);
-		}
-		else if(moveChoice == 3)
-		{
-			return null;
-		}
+		
 
 		System.out.println("This is the table.");
 		System.out.println("---------------------------------------------------------");
@@ -113,6 +132,5 @@ public class RealPlayer extends Player implements Observer {
 	
 		
 }
-  
-
+*/
 

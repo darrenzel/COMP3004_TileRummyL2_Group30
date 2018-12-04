@@ -15,6 +15,7 @@ public abstract class Player {
 		this.index = index;
 	}
 	
+	//update()
 	public abstract void play();
 	
 }

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class TileTest {
 
 	@Test
-	void testtoSting() {
+	void testToSting() {
 		//test toString method
 		Tile tile = new Tile(3,"green");
 		String tileString = "green 3";
