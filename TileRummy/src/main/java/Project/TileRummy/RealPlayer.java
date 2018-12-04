@@ -12,6 +12,9 @@ public class RealPlayer extends Player {
 	{
 		super(hand, name, index);
 	}
+	
+	
+	//update
 	@Override
 	public void play() {
 		int moveChoice;
